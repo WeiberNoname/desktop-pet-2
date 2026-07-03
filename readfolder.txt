@@ -1,0 +1,125 @@
+DESKTOP PET MASCOT - PROJECT DIRECTORY AND FILE STRUCTURE
+
+This document explains the purpose and role of every folder and file in this project.
+
+================================================================================
+📁 DIRECTORY TREE
+================================================================================
+
+desktop-pet/
+│
+├── assets/                       # Development assets folder for 3D model drops
+│
+├── code/                         # pristine backup clones of core source files
+│   ├── index.html
+│   ├── main.js
+│   ├── package.json
+│   ├── README.md
+│   ├── renderer.js
+│   └── style.css
+│
+├── DesktopPet-win32-x64/         # Standalone compiled executable folder for Windows
+│   ├── DesktopPet.exe            # Launch program (run this directly)
+│   ├── assets/                   # Production assets folder for custom 3D models
+│   └── ... (Electron binaries and dependency frameworks)
+│
+├── node_modules/                 # External node dependencies (Electron, Three.js)
+│
+├── index.html                    # Webpage wrapper hosting the WebGL canvas
+├── main.js                       # Electron main process (Windows manager)
+├── renderer.js                   # WebGL render loops, click-through, and animations
+├── style.css                     # Window transparency and canvas layouts
+├── package.json                  # Node configuration, scripts, and dependencies
+├── package-lock.json             # Locked version tracking of Node packages
+├── README.md                     # Polished setup and customization documentation
+├── readme_commerce.txt           # Outline of marketing and sales touchpoints
+└── readfolder.txt                # This directory guide
+
+================================================================================
+📄 FILE AND FOLDER ROLES
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CORE SOURCE FILES
+--------------------------------------------------------------------------------
+* main.js
+  - Purpose: The Electron main process controller.
+  - Role: Interacts with the Windows Operating System. It creates the borderless,
+    transparent window, forces it to stay "always on top", places it above the
+    taskbar at the bottom-right screen corner, and handles OS-level events (like
+    moving the window position or bypassing mouse click captures).
+
+* renderer.js
+  - Purpose: The frontend browser logic processor.
+  - Role: Initializes the WebGL 3D rendering context (Three.js), scene, lights,
+    and cameras. It handles the continuous animation render loop (bobbing and
+    jumping), monitors mouse movements to check if they overlap the character
+    (Raycasting), and triggers events to ignore or capture mouse clicks. It also
+    manages directory scanning and loads/normalizes custom models.
+
+* index.html
+  - Purpose: Document viewport container.
+  - Role: Contains the HTML layout where the Three.js WebGL canvas is mounted. It
+    defines the native "importmap" script, telling Chromium how to resolve relative
+    imports inside Three.js modules (like mapping "three" to the build source files).
+
+* style.css
+  - Purpose: Style sheet.
+  - Role: Enforces absolute background transparency (RGBA 0,0,0,0) across the HTML,
+    body, container, and WebGL canvas. It disables scrollbars, text selections, and
+    default image dragging behavior.
+
+--------------------------------------------------------------------------------
+2. CONFIGURATION AND PACKAGING
+--------------------------------------------------------------------------------
+* package.json
+  - Purpose: Project metadata and dependencies manifest.
+  - Role: Lists project parameters (name, entry points, dependencies). Defines
+    executable commands: "npm start" (runs Electron dev environment) and
+    "npm run build" (bundles files into DesktopPet-win32-x64 folder).
+
+* package-lock.json
+  - Purpose: Dependency lock file.
+  - Role: Tracks exact sub-dependency versions installed by npm to ensure builds
+    behave identically across different computers.
+
+--------------------------------------------------------------------------------
+3. DIRECTORIES
+--------------------------------------------------------------------------------
+* assets/
+  - Purpose: Zero-code custom asset directory.
+  - Role: In dev mode, place a `.glb` or `.gltf` 3D model here to replace the pink
+    bunny mascot. The app scans this folder on launch, auto-centers, and scales
+    whatever model is found.
+
+* DesktopPet-win32-x64/
+  - Purpose: Compiled standalone build directory.
+  - Role: Contains the bundled app ready for distribution. Inside, users can run
+    `DesktopPet.exe` without having Node.js or npm installed. It contains its own
+    `assets/` subfolder next to the `.exe` file for dropping custom models.
+
+* code/
+  - Purpose: Backup clone folder.
+  - Role: Stores pristine duplicates of core code files, isolated from build
+    remnants and heavy `node_modules` folders, making it easy to copy or reset
+    if edits break the main files.
+
+* node_modules/
+  - Purpose: Local packages folder.
+  - Role: Stores the raw code files downloaded by npm for dependencies, including
+    Three.js components and the Electron runtime executable.
+
+--------------------------------------------------------------------------------
+4. DOCUMENTATION
+--------------------------------------------------------------------------------
+* README.md
+  - Purpose: User setup and usage documentation.
+  - Role: Detailed guidance on run options, interactive controls, and model loading.
+
+* readme_commerce.txt
+  - Purpose: Monetization documentation.
+  - Role: Lists sales channels, digital storefronts, and commercialization models.
+
+* readfolder.txt
+  - Purpose: Structural documentation.
+  - Role: Explains directory tree structure and component roles (this file).
