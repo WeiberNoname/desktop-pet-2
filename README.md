@@ -1,4 +1,4 @@
-
+<img width="2816" height="1536" alt="Gemini_Generated_Image_vyd9mdvyd9mdvyd9" src="https://github.com/user-attachments/assets/e0aa6987-5062-4ae5-9bf4-75e99754274e" />
 
 <img width="400" height="209" alt="Recording 2026-07-03 124130" src="https://github.com/user-attachments/assets/1c43d6d2-26f2-472c-be61-02df03884592" />
 
